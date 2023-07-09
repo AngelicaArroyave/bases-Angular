@@ -5,7 +5,8 @@ import { setupCounter } from './counter.ts'
 
 // import './topics/1-basic-types.ts'
 // import './topics/02-object-inteface'
-import './topics/03-functions'
+// import './topics/03-functions'
+import './topics/04-homework-types'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
