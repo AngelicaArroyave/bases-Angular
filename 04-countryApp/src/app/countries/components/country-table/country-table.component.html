@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let country of countries;
+      <tr ALIGN="center" VALIGN="middle" *ngFor="let country of countries;
                   let i = index">
         <td> {{ i + 1 }} </td>
         <td>
@@ -29,7 +29,7 @@
         <td> {{ country.capital }} </td>
         <td> {{ country.population | number }} </td>
         <td>
-          <a href="#"> Ver más </a>
+          <button class="btn btn-outline-info" type="button" [routerLink]="['/countries/by', country.cca3]">Info</button>
         </td>
       </tr>
     </tbody>
