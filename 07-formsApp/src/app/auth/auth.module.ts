@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AuthRoutingModule } from './auth-routing.module';
+import { EmailValidator, ReactiveFormsModule } from '@angular/forms';
+
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 
@@ -10,8 +11,9 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
     RegisterPageComponent
   ],
   imports: [
+    AuthRoutingModule,
     CommonModule,
-    AuthRoutingModule
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }
