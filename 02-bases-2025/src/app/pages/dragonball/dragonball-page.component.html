@@ -1,0 +1,30 @@
+<h1> DragonBall Page </h1>
+<hr>
+
+<section class="row">
+  <div class="col-12 col-sm-6">
+    <h3> Add: {{ name() }} - {{ power() }} </h3>
+
+    <input type="text" class="form-control" placeholder="Name" [value]="name()" (input)="name.set(txtName.value)" #txtName>
+    <input type="number" class="form-control mt-2" placeholder="Power" [value]="power()" (change)="power.set(txtPower.valueAsNumber)" #txtPower>
+
+    <button class="mt-2 btn btn-primary" (click)="addCharacter()"> Add </button>
+  </div>
+
+  <div class="col-12 col-sm-6">
+    <h3> List: </h3>
+    <ul>
+      @for(character of characters(); track character.id; let idx = $index) {
+        @if(character.power > 500) {
+          <li>
+            <span> {{ idx + 1 }}. {{ character.name }} </span>
+            <!-- <strong [ngClass]="powerClasses()"> ({{ character.power }}) </strong> -->
+            <strong [class.text-danger]="character.power > 9000" [class.text-info]="character.power < 9000"> ({{ character.power }}) </strong>
+          </li>
+        } @else {
+          <li><strong> Are not so powerful </strong></li>
+        }
+      }
+    </ul>
+  </div>
+</section>
