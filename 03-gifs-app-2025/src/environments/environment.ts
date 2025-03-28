@@ -4,7 +4,7 @@ export const environment = {
   companySubtitle: 'App',
   companySlogan: 'Manage your gifs',
 
-  // API Keys
+  api_key: '',
 
-  // URLS
+  giphyUrl: 'https://api.giphy.com/v1'
 };
