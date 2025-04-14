@@ -1,0 +1,74 @@
+<section>
+  <figure class="diff aspect-25/9 w-full" tabindex="0">
+    <div class="diff-item-1" role="img" tabindex="0">
+      <img [alt]="country().flags[1]" [src]="country().flags[0]" />
+    </div>
+    <div class="diff-item-2" role="img">
+      <img [alt]="country().flags[1]" [src]="country().flags[0]" style="filter: blur(4px); opacity: 75%;" />
+    </div>
+    <div class="diff-resizer"></div>
+  </figure>
+</section>
+
+<section class="mx-10">
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">Continent</div>
+      <div class="stat-value">{{ country().continent }}</div>
+    </div>
+  </div>
+
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">Region</div>
+      <div class="stat-value">{{ country().region }}</div>
+    </div>
+  </div>
+
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">Subregion</div>
+      <div class="stat-value">{{ country().subregion }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="mx-10">
+  <div class="stats bg-base-100 border border-base-300">
+    <div class="stat">
+      <div class="stat-title">Population</div>
+      <div class="stat-value">{{ country().population | number }}</div>
+      <div class="stat-actions flex justify-around items-center">
+        <img class="w-10 h-10 rounded-full" [src]="country().flagSvg" alt="Flag of {{ country().name }}" />
+        <div class="badge badge-soft badge-primary">{{ country().capital }}</div>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Area</div>
+      <div class="stat-value">{{ country().area | number }}</div>
+      <div class="stat-actions">
+        <div class="badge badge-dash badge-accent">Postal code: {{ country().postalCode }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mx-10">
+  <div class="stat">
+      <div class="stat-title">Languages</div>
+      @for (language of country().languages; track $index) {
+        <div class="stat-value">{{ language }}</div>
+      }
+  </div>
+
+  <div class="stat">
+      <div class="stat-title">Currencies</div>
+      @for (currency of country().currencies; track $index) {
+        <div class="stat-value">{{ currency.split(',')[0] }}</div>
+        <div class="stat-actions">
+          <div class="badge badge-outline badge-accent badge-xl">{{ currency.split(',')[1] }}</div>
+        </div>
+      }
+  </div>
+</section>
