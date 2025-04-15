@@ -24,6 +24,10 @@ const countryRoutes: Routes = [
         component: ByRegionPageComponent
       },
       {
+        path: 'region/:region',
+        component: ByRegionPageComponent
+      },
+      {
         path: 'by/:code',
         component: CountryPageComponent
       },
