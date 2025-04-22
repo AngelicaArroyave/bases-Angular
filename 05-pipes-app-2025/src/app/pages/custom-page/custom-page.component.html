@@ -1,1 +1,96 @@
-<p>custom-page works!</p>,
+<section class="mx-5 mb-5">
+  <h1 class="text-2xl font-bold">Custom Pipes</h1>
+  <h3 class="text-xl font-thin">Pipes not included in Angular</h3>
+</section>
+
+<div class="stats shadow">
+  <div class="stat">
+    <div class="stat-title">ToggleCase Pipe</div>
+    <div class="stat-value">{{ name() | toggleCase:upperCase() }}</div>
+    <div class="stat-desc">{{ name() }}</div>
+
+    <button class="btn btn-primary mt-2" (click)="upperCase.set(!upperCase())">Toggle Case</button>
+  </div>
+</div>
+
+<div class="divider my-2"></div>
+
+<section class="my-2">
+  <h1 class="text-2xl font-bold">Filter by: {{ searchQuery() }} Sort by: {{ sortBy() | titlecase }}</h1>
+
+  <div class="flex gap-2 justify-end w-full">
+    <input type="text" class="input input-bordered w-full max-w-xs mt-2" placeholder="Search hero" (input)="searchQuery.set(txtSearch.value)" #txtSearch>
+
+    <div class="flex flex-1"></div>
+
+    <button class="btn btn-primary" (click)="sortBy.set('name')">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor"
+          d="M17 6v3M7 6v3m5-1c0 2.5.5 4.5.5 4.5l-2 1m-3.5 3c1.444.984 3 1.5 5 1.5s3.556-.516 5-1.5M7 1l-5.7.3L1 7m16-6l5.7.3L23 7m-6 16l5.7-.3l.3-5.7M7 23l-5.7-.3L1 17"
+          stroke-width="1" />
+      </svg>
+      By name
+    </button>
+    <button class="btn btn-accent" (click)="sortBy.set('canFly')">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor"
+          d="m1.204 4.056l1.833-1.834S9.759 4.463 13.63 6.704l4.31-4.31c.643-.643 1.461-1.089 2.363-1.212c.688-.094 1.532-.182 2.29-.182l.407.407c0 .757-.088 1.602-.182 2.29c-.123.902-.569 1.72-1.212 2.364l-4.31 4.31c2.241 3.87 4.482 10.592 4.482 10.592l-1.834 1.833s-3.666-5.296-6.722-8.352c0 0-2.264 1.45-5.703 4.89c0 0 .407 1.629.407 3.259L7.519 23s-1.63-2.037-3.056-3.463S1 16.482 1 16.482l.407-.408c1.63 0 3.26.407 3.26.407c3.439-3.439 4.889-5.703 4.889-5.703C6.5 7.722 1.204 4.056 1.204 4.056Z"
+          stroke-width="1" />
+      </svg>
+      By fly
+    </button>
+    <button class="btn btn-secondary" (click)="sortBy.set('color')">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor"
+          d="M10 22.5h13M3.5 16L18 1.5A4.5 4.5 0 0 1 22.5 6L8 20.5H7c-1.974 0-3.377.584-5.02 1.68l-.48.32l.32-.48C2.917 20.376 3.5 18.973 3.5 17z"
+          stroke-width="1" />
+      </svg>
+      By color
+    </button>
+    <button class="btn btn-info" (click)="sortBy.set('creator')">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor"
+          d="M17.5 6.5c0 4.038.444 8.062 1.322 12M6.5 6.5c0 4.038-.444 8.062-1.322 12M4 6.5h16m-16 4H.5v-8h23v8H20m-12 11V21a2.5 2.5 0 0 0-2.5-2.5h-.322M16 21.5V21a2.5 2.5 0 0 1 2.5-2.5h.322m-13.644 0a55 55 0 0 1-.427 1.778l-.251.972v.25h15v-.25l-.25-.972a55 55 0 0 1-.428-1.778M12 14.5a2 2 0 1 1 0-4a2 2 0 0 1 0 4Z"
+          stroke-width="1" />
+      </svg>
+      By creator
+    </button>
+  </div>
+</section>
+
+<section class="overflow-x-auto w-full">
+  <table class="table table-zebra w-full">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Can fly</th>
+        <th>Color</th>
+        <th>Creator</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (hero of heroes() | heroFilter:searchQuery() | heroSortBy:sortBy(); track hero.id; let i = $index) {
+      <tr>
+        <th>{{ i + 1 }}</th>
+        <td>{{ hero.name }}</td>
+        <td>
+          <span class="w-44" [class.text-success]="hero.canFly" [class.text-accent]="!hero.canFly">
+            {{ hero.canFly | canFly }}
+          </span>
+        </td>
+        <td>
+          <span class="w-44" [style.color]="hero.color | heroTextColor">
+            {{ hero.color | heroColor | titlecase }}
+          </span>
+        </td>
+        <td>
+          <span [class.text-info]="hero.creator === 0" [class.text-accent]="hero.creator === 1">
+            {{ hero.creator | heroCreator }}
+          </span>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</section>
