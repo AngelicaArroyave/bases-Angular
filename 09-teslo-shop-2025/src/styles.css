@@ -1,4 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-montserrat: "Montserrat Alternates", sans-serif;
+  --animate-fadeIn: fadeIn 0.3s ease-in-out;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
 @plugin "daisyui" {
   themes: night --default;
-};
+}
