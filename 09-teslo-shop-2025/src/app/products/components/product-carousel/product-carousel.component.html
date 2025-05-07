@@ -5,6 +5,12 @@
         <img class="w-full object-cover" [src]="image | productImage" />
       </div>
     }
+
+    @empty {
+      <div class="swiper-slide">
+        <img class="w-full object-cover" [src]="null | productImage" />
+      </div>
+    }
   </div>
   <div class="swiper-pagination"></div>
 
