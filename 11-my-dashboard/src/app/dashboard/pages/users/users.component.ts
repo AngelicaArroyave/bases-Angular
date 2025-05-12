@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { UsersService } from '@services/users.service';
+import { TitleComponent } from '@shared/title/title.component';
 
 @Component({
   selector: 'pages-users',
-  imports: [],
+  imports: [TitleComponent, RouterModule],
   templateUrl: './users.component.html',
 })
-export default class UsersComponent { }
+export default class UsersComponent {
+  public usersService = inject(UsersService)
+}
