@@ -1,0 +1,11 @@
+<h1 class="text-primary text-2xl mb-5 ml-3"> Select a region </h1>
+
+<section class="row mt-2">
+  <div class="flex-col">
+    @for (region of regions; track region) {
+      <button class="btn btn-dash btn-primary ml-2 focus:bg-gray-200" (click)="regionSignal.set(region)">{{ region }}</button>
+    }
+  </div>
+</section>
+
+<country-list  [countries]="regionResource.value() ?? []"  [errorMessage]="regionResource.error()" [isLoading]="regionResource.isLoading()" [isEmpty]="regionResource.value()?.length === 0"></country-list>
